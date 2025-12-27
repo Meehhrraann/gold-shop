@@ -1,26 +1,211 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --kanban-board-circle-blue: oklch(0.6232 0.1879 259.8);
+  --kanban-board-circle-cyan: oklch(0.7146 0.1256 215.13);
+  --kanban-board-circle-gray: oklch(0.5513 0.0233 264.36);
+  --kanban-board-circle-green: oklch(0.7229 0.1921 149.58);
+  --kanban-board-circle-indigo: oklch(0.586 0.2037 277.12);
+  --kanban-board-circle-pink: oklch(0.6559 0.2117 354.34);
+  --kanban-board-circle-purple: oklch(0.6267 0.2325 303.86);
+  --kanban-board-circle-red: oklch(0.6368 0.2078 25.33);
+  --kanban-board-circle-violet: oklch(0.6059 0.2187 292.72);
+  --kanban-board-circle-yellow: oklch(0.7959 0.1618 86.05);
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-bg-primary: var(--bg-primary);
+  --color-primary: var(--primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --kanban-board-circle-primary: var(--primary);
+  --color-kanban-board-circle-yellow: var(--kanban-board-circle-yellow);
+  --color-kanban-board-circle-violet: var(--kanban-board-circle-violet);
+  --color-kanban-board-circle-red: var(--kanban-board-circle-red);
+  --color-kanban-board-circle-purple: var(--kanban-board-circle-purple);
+  --color-kanban-board-circle-pink: var(--kanban-board-circle-pink);
+  --color-kanban-board-circle-indigo: var(--kanban-board-circle-indigo);
+  --color-kanban-board-circle-green: var(--kanban-board-circle-green);
+  --color-kanban-board-circle-gray: var(--kanban-board-circle-gray);
+  --color-kanban-board-circle-cyan: var(--kanban-board-circle-cyan);
+  --color-kanban-board-circle-blue: var(--kanban-board-circle-blue);
+}
+
+@theme {
+  --color-primary: #e8ca89;
+  --color-foreground: #1e1e1e;
+  --color-background: #252525;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: var(--primary);
   }
 }
 
+/* @import url("../styles/theme.css"); */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-vazir), sans-serif;
+}
+@layer base {
+  h2 {
+    font-size: var(--text-xl);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  :root {
+    --color-kanban-board-circle-blue: var(--kanban-board-circle-blue);
+    --color-kanban-board-circle-cyan: var(--kanban-board-circle-cyan);
+    --color-kanban-board-circle-gray: var(--kanban-board-circle-gray);
+    --color-kanban-board-circle-green: var(--kanban-board-circle-green);
+    --color-kanban-board-circle-indigo: var(--kanban-board-circle-indigo);
+    --color-kanban-board-circle-pink: var(--kanban-board-circle-pink);
+    --color-kanban-board-circle-primary: var(--kanban-board-circle-primary);
+    --color-kanban-board-circle-purple: var(--kanban-board-circle-purple);
+    --color-kanban-board-circle-red: var(--kanban-board-circle-red);
+    --color-kanban-board-circle-violet: var(--kanban-board-circle-violet);
+    --color-kanban-board-circle-yellow: var(--kanban-board-circle-yellow);
+  }
+}
+
+@layer utility {
+  .hasan {
+    @apply text-blue-500;
+  }
+
+  /* Add to your global CSS */
+  /* Add to your global CSS */
+  .unread-message-highlight {
+    animation: highlight-pulse 2s ease-in-out 3;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(59, 130, 246, 0.1),
+      transparent
+    );
+    border-left: 3px solid #3b82f6;
+    margin-left: -3px;
+    padding-left: 3px;
+  }
+
+  @keyframes highlight-pulse {
+    0%,
+    100% {
+      background-color: transparent;
+      border-left-color: #3b82f6;
+    }
+    50% {
+      background-color: rgba(59, 130, 246, 0.2);
+      border-left-color: #1d4ed8;
+    }
+  }
+
+  /* Improve scroll performance */
+  .chat-container {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Ensure smooth scrolling but allow instant for restoration */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  .scroll-auto {
+    scroll-behavior: auto;
+  }
+
+  .scrollbar-custom {
+    overflow-y: scroll;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 3px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 9999px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Custom scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 9999px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.1s ease-in-out forwards;
+  }
+}
+
+/* this custom clases work in dark: mode*/
+@utility bg-purple-gradient {
+  background-image: linear-gradient(to top, #151039, #302955);
+}
+
+.dark {
+  --kanban-board-circle-blue: oklch(0.7135 0.1435 254.61);
+  --kanban-board-circle-cyan: oklch(0.7973 0.1339 211.45);
+  --kanban-board-circle-gray: oklch(0.7137 0.0192 261.33);
+  --kanban-board-circle-green: oklch(0.8003 0.1823 151.7);
+  --kanban-board-circle-indigo: oklch(0.6797 0.1586 276.96);
+  --kanban-board-circle-pink: oklch(0.7253 0.1752 349.74);
+  --kanban-board-circle-purple: oklch(0.7218 0.1766 305.51);
+  --kanban-board-circle-red: oklch(0.7108 0.166 22.21);
+  --kanban-board-circle-violet: oklch(0.7093 0.1589 293.52);
+  --kanban-board-circle-yellow: oklch(0.8601 0.173 91.84);
 }
