@@ -1,122 +1,120 @@
-// @/components/products/ProductsGallary.tsx
-
 "use client";
-import Image from "next/image";
-import React, { useEffect } from "react";
-import LinkWithLoader from "../loading/LinkWithLoader";
+
+import React, { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { getProducts } from "@/lib/actions/product.action";
-import { formatNumberWithCommas } from "@/lib/utils";
 import LocalSearchbar from "../search/localSerchbar";
 import { useSearchParams } from "next/navigation";
 import { QUERY_SEARCH_PARAMS_KEY } from "@/contants";
-import Filter from "../search/ProductFilter";
 import ProductCard from "./ProductCard";
+import ProductFilter from "../search/ProductFilter";
 
-// Note: You can now remove the static 'items' array
+interface Props {
+  initialProducts: any[];
+  initialIsNext: boolean;
+}
 
-const ProductsGallary = () => {
-  // Initialize state as an empty array, which is safe for .map()
-  const [products, setProducts] = React.useState<any[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState();
-
+const ProductsGallary = ({ initialProducts, initialIsNext }: Props) => {
   const searchParams = useSearchParams();
+  const [products, setProducts] = useState<any[]>(initialProducts);
+  const [isNext, setIsNext] = useState(initialIsNext);
+  const [page, setPage] = useState(1);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  // Intersection Observer
+  const { ref, inView } = useInView();
+
   const paramFilter = searchParams.get("filter");
-  const paramPage = searchParams.get("page");
   const paramSearch = searchParams.get(QUERY_SEARCH_PARAMS_KEY);
   const paramCategory = searchParams.get("category");
 
-  const fetchProducts = async () => {
-    setIsLoading(true);
+  // Reset when filters change (Sync with Server Page)
+  useEffect(() => {
+    setProducts(initialProducts);
+    setIsNext(initialIsNext);
+    setPage(1);
+    setIsLoadingMore(false);
+  }, [initialProducts, initialIsNext]);
+
+  // Infinite Scroll Trigger
+  useEffect(() => {
+    if (inView && isNext && !isLoadingMore) {
+      loadMoreProducts();
+    }
+  }, [inView, isNext, isLoadingMore]);
+
+  const loadMoreProducts = async () => {
+    setIsLoadingMore(true);
+    const nextPage = page + 1;
+
     try {
       const res = await getProducts({
-        searchQuery: paramSearch,
-        filter: paramFilter,
-        page: paramPage ? +paramPage : 1,
-        category: paramCategory, // 2. Pass it to the server action
+        searchQuery: paramSearch || undefined,
+        filter: paramFilter || undefined,
+        category: paramCategory || undefined,
+        page: nextPage,
       });
 
-      if (res?.products) setProducts(res.products);
-    } catch (e) {
-      console.error(e);
+      // Stop if no data
+      if (!res || !res.products || res.products.length === 0) {
+        setIsNext(false);
+        setIsLoadingMore(false);
+        return;
+      }
+
+      setProducts((prev) => [...prev, ...res.products]);
+      setIsNext(res.isNext);
+      setPage(nextPage);
+    } catch (error) {
+      console.error(error);
+      setIsNext(false);
     } finally {
-      setIsLoading(false);
+      setIsLoadingMore(false);
     }
   };
 
+  // ✅ ADD THIS EFFECT
   useEffect(() => {
-    console.log("ssssssss");
-    setProducts([]); // reset result
-    setError(""); // reset error
-    fetchProducts();
-  }, [paramFilter, paramPage, paramSearch, paramCategory]);
+    // 1. Disable the browser's automatic scroll restoration
+    if (typeof window !== "undefined" && "scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    // 2. Force scroll to top
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10">
-      <Filter />
-      <LocalSearchbar
-        route="/products" // route that we are!
-        iconPosition="left"
-        imgSrc="/assets/icons/search.svg"
-        placeholder="...جستجوی محصول"
-        otherClasses="flex-1 max-w-md"
-      />
+    <>
+      <div className="mx-auto mt-10 mb-8 flex w-fit flex-col items-center">
+        <LocalSearchbar
+          route="/products"
+          iconPosition="left"
+          imgSrc="/assets/icons/search.svg"
+          placeholder="...جستجوی محصول"
+          otherClasses="w-full max-w-md mx-auto"
+        />
+        <ProductFilter />
+      </div>
 
-      {isLoading && (
-        <div
-          dir="rtl"
-          className="text-primary flex items-center gap-2 text-center"
-        >
-          <div className="border-primary size-4 animate-spin rounded-full border-3 border-t-transparent"></div>
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+        {products.length > 0 ? (
+          products.map((item: any, i: number) => (
+            <ProductCard key={`${item._id}-${i}`} product={item} />
+          ))
+        ) : (
+          <div className="col-span-full py-10 text-center">
+            محصولی یافت نشد.
+          </div>
+        )}
+      </div>
 
-          <p>در حال بارگذاری محصولات...</p>
+      {isNext && (
+        <div ref={ref} className="mt-4 flex w-full justify-center py-10">
+          <p className="text-primary">در حال بارگذاری...</p>
         </div>
       )}
-      {products.length === 0 && !isLoading && (
-        <p className="text-center text-gray-500">محصولی برای نمایش یافت نشد.</p>
-      )}
-      <div className="grid w-full grid-cols-2 justify-center gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {/* Remove the JSON.stringify(products) once you are sure the data is structured correctly */}
-        {!isLoading &&
-          products.map((item) => (
-            // <LinkWithLoader
-            //   // Use the unique ID from MongoDB (_id) for routing
-            //   href={`/products/${item._id}-${item.displaySlug}`}
-            //   key={item._id}
-            //   className="border-primary relative overflow-hidden rounded-lg border"
-            // >
-            //   {/* IMAGE */}
-            //   <div className="relative aspect-square w-full bg-gray-500">
-            //     <Image
-            //       // Safely access the first media item's URL
-            //       src={item.media?.[0]?.url || "/placeholder.png"}
-            //       alt={item.name}
-            //       fill
-            //       style={{ objectFit: "cover" }}
-            //     />
-
-            //     {/* bottom fade only over image */}
-            //     <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-black/80 to-transparent" />
-            //   </div>
-
-            //   {/* TEXT */}
-            //   <div className="text-primary relative z-10 flex h-16 flex-col items-center justify-center text-sm">
-            //     <p>{item.name}</p>
-            //     <p>
-            //       {/* Assuming price is a number and you have a formatNumber utility */}
-            //       {item.price ? formatNumberWithCommas(item.price) : "—"}
-            //       <span className="bg-primary text-foreground ml-1 rounded-full px-1 text-xs">
-            //         تومان
-            //       </span>
-            //     </p>
-            //   </div>
-            // </LinkWithLoader>
-            <div key={item._id}>
-              <ProductCard product={item} />
-            </div>
-          ))}
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -3,7 +3,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import GlobalResult from "./GlobalResult";
 import { Search, X } from "lucide-react";
 

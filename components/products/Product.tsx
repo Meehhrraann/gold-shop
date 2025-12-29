@@ -28,11 +28,11 @@ import {
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import AddComment from "./AddComment";
-import LinkWithLoader from "../loading/LinkWithLoader";
 import { useCurrentRole } from "@/hooks/use-current-role";
 
 import CartControl from "../cart/CartControl";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 const Product = ({ product }) => {
   const currentUser = useCurrentUser();
@@ -123,10 +123,10 @@ const Product = ({ product }) => {
 
   // render
   return (
-    <div className="flex flex-col gap-20 text-gray-300">
+    <div className="flex flex-col gap-20 px-5 text-gray-300">
       <div className="container mx-auto mt-20 flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:items-start">
         {/* left */}
-        <div className="flex h-fit w-[400px] justify-center">
+        <div className="flex h-fit w-full justify-center">
           <CarouselProduct
             items={product?.media} // if we need 3 => {items.slice(0, 3)}
             aspectRatio="1:1" // =>  4:3 1:1 3:4
@@ -144,10 +144,10 @@ const Product = ({ product }) => {
           />
         </div>
         {/* right */}
-        <div className="bg-foreground flex h-fit flex-1 flex-col items-end gap-10 rounded-xl p-10">
+        <div className="bg-foreground flex h-fit w-full flex-1 flex-col items-end gap-10 rounded-xl p-10">
           {/* title + rating */}
           <div className="flex w-full flex-col justify-center gap-5">
-            <div className="flex flex-row-reverse justify-between">
+            <div className="flex flex-row-reverse justify-between gap-5">
               <h1 dir="rtl" className="text-primary truncate text-2xl">
                 {product?.name}
               </h1>
@@ -175,11 +175,11 @@ const Product = ({ product }) => {
                   />
                 )}
                 {currentRole === "ADMIN" && (
-                  <LinkWithLoader
+                  <Link
                     href={`http://localhost:3000/admin/updateProduct/${product?._id}`}
                   >
                     <FaRegEdit className="text-primary size-6 cursor-pointer" />
-                  </LinkWithLoader>
+                  </Link>
                 )}
               </div>
             </div>
@@ -292,12 +292,12 @@ const Product = ({ product }) => {
           </div> */}
           <div className="flex w-full items-center justify-center gap-5 self-center">
             {isInCart && (
-              <LinkWithLoader
+              <Link
                 className="bg-primary text-foreground rounded-md p-2 whitespace-nowrap"
                 href="/cart"
               >
                 رفتن به سبد خرید
-              </LinkWithLoader>
+              </Link>
             )}
 
             <CartControl product={product} />

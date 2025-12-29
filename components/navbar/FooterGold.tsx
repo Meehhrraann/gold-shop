@@ -1,7 +1,7 @@
 import React from "react";
 import { GiPlantsAndAnimals } from "react-icons/gi";
 import { TbCopyright } from "react-icons/tb";
-import LinkWithLoader from "../loading/LinkWithLoader";
+import Link from "next/link";
 
 const FooterGold = () => {
   const info = [
@@ -23,14 +23,14 @@ const FooterGold = () => {
     <>
       {/* section 4 */}
       <div className="mt-5 flex min-h-36 w-full flex-col items-center justify-center gap-16 bg-[#1e1e1e] py-2 text-[#e8ca89] lg:flex-row">
-        <LinkWithLoader className="cursor-pointer" href="/">
+        <Link className="cursor-pointer" href="/">
           <div className="flex h-full w-fit flex-col items-center justify-center gap-1">
             <GiPlantsAndAnimals className="size-10" />
             <p className="flex h-fit translate-y-1 font-bold">
               Charmchi Jewels
             </p>
           </div>
-        </LinkWithLoader>
+        </Link>
         <div className="flex flex-col items-start justify-evenly gap-16 md:flex-row">
           {info.map((item, index) => {
             return (

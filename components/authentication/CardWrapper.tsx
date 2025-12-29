@@ -17,7 +17,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ children, goToLogin }) => {
       {/* left section */}
       <div className="hidden aspect-square h-full w-[50%] border-2 border-[#e8ca89] bg-[url('/authImage.png')] bg-cover lg:flex"></div>
       {/* right section */}
-      <div className="w-full lg:w-[50%]">
+      <div className="flex w-full flex-col items-center lg:w-[50%]">
         {/* title */}
         <div className="flex h-full flex-col items-center justify-center gap-1">
           <GiPlantsAndAnimals className="size-14" />

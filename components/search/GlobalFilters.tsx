@@ -2,7 +2,8 @@
 
 import { GLOBAL_SEARCH_TYPES } from "@/contants";
 import { formUrlQuery } from "@/lib/utils";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import React, { useState } from "react";
 
 const GlobalFilters = () => {

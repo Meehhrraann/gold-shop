@@ -246,7 +246,7 @@ const LoginForm = () => {
   React.useEffect(() => {
     if (urlError === "OAuthAccountNotLinked") {
       setErrorMessage(
-        "This email before used with other account like google | github",
+        "این ایمیل قبلا با حساب دیگری نظیر google | github استفاده شده است",
       );
     }
   }, [urlError]);
@@ -297,7 +297,7 @@ const LoginForm = () => {
         return;
       }
 
-      setErrorMessage(error.message || "Something went wrong");
+      setErrorMessage(error.message || "مشکلی رخ داد. دوباره تلاش کنید");
       setIsSubmitting(false);
     }
     // Do NOT put setIsSubmitting(false) in finally block,
@@ -374,7 +374,7 @@ const LoginForm = () => {
                 name="code"
                 render={({ field }) => (
                   <FormItem className="text-left">
-                    <FormLabel className="font-semibold">code :</FormLabel>
+                    <FormLabel className="font-semibold">کد ورود :</FormLabel>
                     <FormControl>
                       <Input
                         className="text-black"
@@ -390,7 +390,7 @@ const LoginForm = () => {
                         onClick={() => resendNewCode(form.getValues("email"))}
                         className="text-gray-400"
                       >
-                        resend a new code
+                        ارسال مجدد کد
                       </button>
                     </FormDescription>
                   </FormItem>
@@ -409,7 +409,7 @@ const LoginForm = () => {
           {errorMessage && (
             <div className="flex w-full items-center justify-start gap-2 rounded-lg bg-red-200 p-1 text-start text-sm text-red-600">
               <FaExclamationCircle size={18} />
-              <p>{errorMessage!}</p>
+              <p dir="rtl">{errorMessage!}</p>
             </div>
           )}
 

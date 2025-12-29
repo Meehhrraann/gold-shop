@@ -15,10 +15,8 @@ import { CartList } from "./CartList";
 import { formatNumberWithCommas } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import LinkWithLoader from "../loading/LinkWithLoader";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import LoadingModal from "../loading/LoadingModal";
 
 export const CartDrawer = () => {
   const { itemCount, cartTotal } = useCart();

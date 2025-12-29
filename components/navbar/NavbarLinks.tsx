@@ -1,5 +1,6 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 // import LoadingLink from "../LoadingLink";
 import Link from "next/link";

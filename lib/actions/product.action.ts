@@ -90,29 +90,28 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
 // 2. GET ALL PRODUCTS (With Pagination & Search)
 // ==========================================
 
+// ... imports
+
 export async function getProducts(params: {
   page?: number;
   filter?: string;
   searchQuery?: string;
-  category?: string; // This comes from the URL as a string
+  category?: string;
+  text?: string;
 }) {
   try {
     await connectMongoDB();
+    const { page = 1, filter, searchQuery, category, text } = params;
+    console.log("text", text);
+    const pageSize = 6; // Number of items per load
+    const skipAmount = (page - 1) * pageSize;
 
-    const { page = 1, filter, searchQuery, category } = params;
-
-    // 1. Initialize the query object
     const query: FilterQuery<typeof Product> = {};
 
-    // 2. Fix: Category filtering
-    // If category is provided, add it to the query.
-    // Mongoose will handle the string-to-ObjectId conversion automatically.
     if (category) {
       query.category = category;
-    
     }
 
-    // 3. Search logic
     if (searchQuery) {
       query.$or = [
         { name: { $regex: new RegExp(searchQuery, "i") } },
@@ -120,7 +119,6 @@ export async function getProducts(params: {
       ];
     }
 
-    // 4. Sorting logic
     let sortOptions: any = {};
     switch (filter) {
       case "newest":
@@ -141,34 +139,31 @@ export async function getProducts(params: {
         break;
     }
 
-    // 5. Database Execution
     const products = await Product.find(query)
       .sort(sortOptions)
+      .skip(skipAmount) // Skip previous pages
+      .limit(pageSize) // Limit results
       .populate({
         path: "category",
-        model: Category, // Explicitly pass the model to avoid "MissingSchemaError"
+        model: Category,
         select: "name slug",
       })
       .lean();
 
     const totalProducts = await Product.countDocuments(query);
 
+    // Calculate if there are more pages
+    const isNext = totalProducts > skipAmount + products.length;
+
     return {
       products: JSON.parse(JSON.stringify(products)),
-      total: totalProducts,
-      isNext: false, // You can implement pagination logic here later
+      isNext,
     };
   } catch (error) {
     console.error("Get Products Error:", error);
-    return {
-      products: [],
-      isNext: false,
-      total: 0,
-      error: "خطا در دریافت محصولات",
-    };
+    throw error;
   }
 }
-// ==========================================
 // 3. GET SINGLE PRODUCT (By Slug or ID)
 // ==========================================
 // Define the interface for the parameters object

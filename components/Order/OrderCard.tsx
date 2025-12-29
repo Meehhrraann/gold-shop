@@ -52,7 +52,7 @@ const OrderCard = ({ order }) => {
               className="h-20 w-20 flex-none snap-start overflow-hidden rounded-xl border border-[#e8ca89]/10 bg-[#1e1e1e] transition-colors hover:border-[#e8ca89]/40"
             >
               <img
-                src={item.product?.media?.[0]?.url || "/placeholder-img.png"}
+                src={item.product?.media?.[0]?.url || "/no-image.jpg"}
                 alt={item.product?.name || "Product"}
                 className="h-full w-full object-cover"
               />

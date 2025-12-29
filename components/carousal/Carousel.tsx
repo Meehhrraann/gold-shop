@@ -68,7 +68,7 @@ export const Banner = ({ products }: BannerProps) => {
                       {/* Image Container */}
                       <div className="relative h-[75%] w-full overflow-hidden">
                         <Image
-                          src={product.media[0]?.url || "/placeholder.png"}
+                          src={product.media[0]?.url || "/no-image.jpg"}
                           alt={product.name}
                           fill // Use fill for better responsive control in relative containers
                           className="object-cover transition-transform duration-500 hover:scale-105"

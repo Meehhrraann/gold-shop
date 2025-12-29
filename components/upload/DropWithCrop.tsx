@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { formatFileNameWithDate } from "@/lib/utils";
+import { SquarePen } from "lucide-react";
 
 // TS: Interface for files with preview
 interface FileWithPreview {
@@ -261,7 +262,7 @@ const DropWithCrop: React.FC<DropWithCropProps> = ({
                     onClick={() => handleEditImage(f)}
                     type="button"
                   >
-                    Edit
+                    <SquarePen className="size-4" />
                   </button>
                 )}
                 <IoCloseSharp
@@ -312,35 +313,45 @@ const DropWithCrop: React.FC<DropWithCropProps> = ({
       {/* Crop Modal */}
       {cropModalOpen && currentCropFile && (
         <Dialog open={cropModalOpen} onOpenChange={setCropModalOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Crop Image</DialogTitle>
+          {/* Add sm:max-w-lg to keep it neat and a max height for the whole modal */}
+          <DialogContent className="flex max-h-[90vh] flex-col gap-0 p-0">
+            <DialogHeader className="p-6 pb-2">
+              <DialogTitle className="text-primary">ویرایش عکس</DialogTitle>
             </DialogHeader>
-            {currentCropFile && (
-              <ReactCrop
-                crop={crop}
-                onChange={(c) => setCrop(c)}
-                aspect={undefined}
+
+            {/* This wrapper ensures the image is scrollable while the Footer stays visible */}
+            <div className="flex flex-1 justify-center overflow-y-auto p-6 pt-0">
+              {currentCropFile && (
+                <ReactCrop
+                  crop={crop}
+                  onChange={(c) => setCrop(c)}
+                  aspect={undefined}
+                >
+                  <img
+                    className="h-auto w-full" // Ensure auto height
+                    src={currentCropFile.preview}
+                    ref={setImageRef}
+                    onLoad={() =>
+                      setCrop({
+                        unit: "%",
+                        width: 50,
+                        height: 50,
+                        x: 25,
+                        y: 25,
+                      })
+                    }
+                  />
+                </ReactCrop>
+              )}
+            </div>
+
+            <DialogFooter className="border-t p-6 pt-2">
+              <Button
+                type="button"
+                className="w-full sm:w-auto"
+                onClick={handleSaveCrop}
               >
-                <img
-                  className="w-full"
-                  src={currentCropFile.preview}
-                  ref={setImageRef}
-                  onLoad={() =>
-                    setCrop({
-                      unit: "%",
-                      width: 50,
-                      height: 50,
-                      x: 25,
-                      y: 25,
-                    })
-                  }
-                />
-              </ReactCrop>
-            )}
-            <DialogFooter>
-              <Button type="button" onClick={handleSaveCrop}>
-                Save Crop
+                برش
               </Button>
             </DialogFooter>
           </DialogContent>

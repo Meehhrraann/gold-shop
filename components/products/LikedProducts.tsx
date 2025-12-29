@@ -59,7 +59,7 @@ const LikedProducts = ({ products = [] }) => {
               {/* Image Section */}
               <div className="relative aspect-square overflow-hidden bg-[#333]">
                 <Image
-                  src={product.media[0]?.url}
+                  src={product.media[0]?.url || "/no-image.jpg"}
                   alt={product.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"

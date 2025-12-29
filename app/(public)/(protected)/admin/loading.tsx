@@ -2,10 +2,10 @@ import { Loader2 } from "lucide-react";
 
 export default function SettingsLoading() {
   return (
-    <div className="flex min-h-screen items-center justify-center p-8">
-      <div className="flex flex-col items-center gap-4">
-        <Loader2 className="h-8 w-8 animate-spin text-teal-700" />
-        <p className="text-muted-foreground">Loading settings...</p>
+    <div className="text-primary flex min-h-screen justify-center p-8">
+      <div dir="rtl" className="flex gap-2 pt-36">
+        <Loader2 className="size-6 animate-spin" />
+        <p className="text-muted-foreground">لطفا منتظر بمانید...</p>
       </div>
     </div>
   );

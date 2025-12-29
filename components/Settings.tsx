@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 
 import { SettingsSchema } from "@/validation";
 import { updateProfileAction } from "@/lib/actions/user.action";
@@ -160,7 +160,11 @@ export const Settings = ({ user }: { user: any }) => {
 
                     <DialogFooter className="gap-2 sm:justify-start">
                       <DialogClose asChild>
-                        <Button type="button" variant="secondary">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          className="bg-red-500/10 text-red-500"
+                        >
                           انصراف
                         </Button>
                       </DialogClose>

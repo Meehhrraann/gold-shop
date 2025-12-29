@@ -131,7 +131,7 @@ const ExistingMediaViewer = ({
           className="relative h-24 w-24 overflow-hidden rounded-md border shadow-md"
         >
           <img
-            src={item.url}
+            src={item.url || "/no-image.jpg"}
             alt={item.filename}
             className="h-full w-full object-cover"
           />

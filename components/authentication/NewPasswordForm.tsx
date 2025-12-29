@@ -24,6 +24,7 @@ import {
   forgetPasswordChange,
   forgetPasswordSendEmail,
 } from "@/lib/actions/auth/forgetPassword.action";
+import { KeyIcon } from "lucide-react";
 
 const NewPasswordForm = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -64,8 +65,11 @@ const NewPasswordForm = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-3 rounded-lg bg-slate-50 p-10 md:w-[350px]">
-      <p className="text-2xl font-semibold">🗝️Forget Password</p>
+    <div className="flex flex-col items-center justify-center gap-y-3 rounded-lg bg-slate-50/20 p-10 text-gray-300 md:w-[350px]">
+      <p className="flex gap-2 text-2xl font-semibold">
+        <KeyIcon className="size-7 font-bold text-amber-500" />
+        فراموشی رمز عبور
+      </p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -76,32 +80,41 @@ const NewPasswordForm = () => {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="text-left">
-                <FormLabel className="font-semibold">Password :</FormLabel>
+              <FormItem dir="rtl" className="text-left">
+                <FormLabel className="font-semibold">رمز جدید :</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black"
-                    placeholder="example@email.com"
+                    className="border-none bg-white/70 text-black"
+                    placeholder="******"
                     {...field}
                     type="password"
                   />
                 </FormControl>
 
-                <FormMessage className="text-wrap text-red-600" />
+                <FormMessage
+                  dir="rtl"
+                  className="text-right text-wrap text-red-600"
+                />
               </FormItem>
             )}
           />
 
           {/* display alert */}
           {successMessage && (
-            <div className="flex w-full items-center justify-start gap-2 rounded-lg bg-emerald-200 p-1 text-start text-sm text-emerald-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-2 rounded-lg bg-emerald-200 p-1 text-start text-sm text-emerald-600"
+            >
               <FaCheckCircle size={18} />
               <p>{successMessage}</p>
             </div>
           )}
 
           {errorMessage && (
-            <div className="flex w-full items-center justify-start gap-2 rounded-lg bg-red-200 p-1 text-start text-sm text-red-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-2 rounded-lg bg-red-200 p-1 text-start text-sm text-red-600"
+            >
               <FaExclamationCircle size={18} />
               <p>{errorMessage!}</p>
             </div>
@@ -112,7 +125,7 @@ const NewPasswordForm = () => {
             className={"flex w-full bg-sky-600 text-white"}
             type="submit"
           >
-            change password
+            تغییر رمز
           </Button>
         </form>
       </Form>

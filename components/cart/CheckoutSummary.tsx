@@ -6,7 +6,8 @@ import { useSession } from "next-auth/react";
 import { formatNumberWithCommas } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { Loader2 } from "lucide-react";
 import { createOrderAction } from "@/lib/actions/cart.actions";
 

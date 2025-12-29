@@ -3,8 +3,8 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { QUERY_SEARCH_PARAMS_KEY } from "@/contants";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
@@ -34,6 +34,12 @@ const LocalSearchbar = ({
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
+      // 🛑 CRITICAL FIX: PREVENT INFINITE LOOP
+      // If the current search input is the same as the URL query, DO NOTHING.
+      if (search === (query || "")) {
+        return;
+      }
+
       if (search) {
         const newUrl = formUrlQuery({
           params: searchParams.toString(),
@@ -43,15 +49,16 @@ const LocalSearchbar = ({
         router.push(newUrl, { scroll: false });
       } else {
         if (pathname === route) {
-          // OR if(query)
           const newUrl = removeKeysFromQuery({
             params: searchParams.toString(),
             keysToRemove: [QUERY_SEARCH_PARAMS_KEY],
           });
+          // Only push if there was actually something to remove
           router.push(newUrl, { scroll: false });
         }
       }
     }, 300);
+
     return () => clearTimeout(delayDebounceFn);
   }, [search, route, pathname, router, searchParams, query]);
 

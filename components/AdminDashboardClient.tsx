@@ -79,7 +79,7 @@ const AdminDashboardClient = () => {
         {/* Navigation Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {adminLinks.map((link) => (
-            <LinkWithLoader key={link.href} href={link.href} className="group">
+            <Link key={link.href} href={link.href} className="group">
               <Card className="bg-foreground h-full border-none transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent
                   className="flex items-center gap-5 p-6 text-right"
@@ -100,7 +100,7 @@ const AdminDashboardClient = () => {
                   </div>
                 </CardContent>
               </Card>
-            </LinkWithLoader>
+            </Link>
           ))}
         </div>
       </div>

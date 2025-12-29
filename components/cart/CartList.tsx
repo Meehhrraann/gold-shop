@@ -25,7 +25,7 @@ export const CartList = ({ isDrawer = false }: CartListProps) => {
         <FaShoppingCart className="size-12 text-gray-200" />
         <p className="text-gray-500">سبد خرید شما خالی است</p>
         {isDrawer && (
-          <Link href="/shop">
+          <Link href="/products">
             <Button variant="outline" size="sm">
               برو به فروشگاه
             </Button>
@@ -45,7 +45,7 @@ export const CartList = ({ isDrawer = false }: CartListProps) => {
           {/* Image */}
           <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md">
             <Image
-              src={item.product.media?.[0]?.url || "/placeholder.png"}
+              src={item.product.media?.[0]?.url || "/no-image.jpg"}
               alt={item.product.name}
               fill
               className="object-cover"

@@ -17,6 +17,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import { registerAction } from "@/lib/actions/auth/register.action";
+// import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 
 const RegisterForm = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -26,6 +28,7 @@ const RegisterForm = () => {
   const [successMessage, setSuccessMessage] = React.useState<
     string | undefined
   >("");
+  const router = useRouter(); // 2. Initialize router
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -38,14 +41,20 @@ const RegisterForm = () => {
 
   async function onSubmit(values: z.infer<typeof RegisterSchema>) {
     setIsSubmitting(true);
+    setErrorMessage(""); // Clear previous errors
+    setSuccessMessage(""); // Clear previous success
+
     try {
-      // console.log(values);
-      // router.push(`/question/${parsedQuestionDetails._id}`);
       const result = await registerAction(values);
-      setSuccessMessage(result?.success);
-      setErrorMessage(result?.error);
+
+      if (result?.error) {
+        setErrorMessage(result.error);
+      } else {
+        setSuccessMessage("ثبت‌نام با موفقیت انجام شد...");
+        router.push("/auth/login"); // Ensure this matches your login route path
+      }
     } catch (error: any) {
-      setErrorMessage(error);
+      setErrorMessage("خطایی رخ داده است. لطفا دوباره تلاش کنید.");
     } finally {
       setIsSubmitting(false);
     }
@@ -124,13 +133,19 @@ const RegisterForm = () => {
           />
 
           {successMessage && (
-            <div className="flex h-9 w-full items-center justify-start gap-1 rounded-lg bg-emerald-200 pl-3 text-emerald-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-1 rounded-lg bg-emerald-200 pl-3 text-emerald-600"
+            >
               <FaCheckCircle size={18} />
               <p>{successMessage}</p>
             </div>
           )}
           {errorMessage && (
-            <div className="flex h-9 w-full items-center justify-start gap-1 rounded-lg bg-red-200 pl-3 text-red-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-1 rounded-lg bg-red-200 pl-3 text-red-600"
+            >
               <FaExclamationCircle size={18} />
               <p>{errorMessage}</p>
             </div>

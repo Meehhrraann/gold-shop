@@ -12,24 +12,24 @@ export async function newVerification(params) {
 
     const existingToekn = await VerificationToken.findOne({ token });
     if (!existingToekn) {
-      return { error: "Token does not exist" };
+      return { error: "توکن وجود ندارد" };
     }
     if (existingToekn.expires < new Date()) {
       console.log("expired");
-      return { error: "Token expired" };
+      return { error: "توکن منقضی شده" };
     }
 
     const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
     if (!decodedToken) {
       console.log("token is not valid");
-      return { error: "token not valid" };
+      return { error: "توکن معتبر نیست" };
     }
     await User.findOneAndUpdate(
       { email: decodedToken.email },
       { emailVerified: new Date() },
     );
     await VerificationToken.findOneAndDelete({ token });
-    return { success: "user verified" };
+    return { success: "تایید شد" };
   } catch (error: any) {
     return { error: error.message };
     console.error(error);

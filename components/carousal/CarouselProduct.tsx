@@ -15,7 +15,6 @@ import {
 import { cn } from "@/lib/utils";
 
 // --- Types ---
-
 interface Item {
   id: string;
   url: string;
@@ -37,14 +36,12 @@ interface CarouselProductProps {
   className?: string;
   thumbnailClassName?: string;
   maxWidth?: string;
-
   // New Embla Props
   align?: "start" | "center" | "end";
   loop?: boolean;
 }
 
 // --- Aspect Ratio Utility ---
-
 const getAspectRatioClass = (
   aspectRatio: CarouselProductProps["aspectRatio"],
 ) => {
@@ -61,7 +58,6 @@ const getAspectRatioClass = (
 };
 
 // --- Component + props ---
-
 export function CarouselProduct({
   items,
   aspectRatio,
@@ -82,14 +78,12 @@ export function CarouselProduct({
   // --- State ---
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
-
   const [thumbApi, setThumbApi] = React.useState<CarouselApi>();
 
   // --- settings ---
   // Effect to update the current index for dots/thumbnails
   React.useEffect(() => {
     if (!api) return;
-
     setCurrent(api.selectedScrollSnap() + 1);
 
     const handleSelect = () => {
@@ -121,6 +115,24 @@ export function CarouselProduct({
   // --- Render ---
   return (
     <div className={cn("flex w-full flex-col gap-4", className)} style={style}>
+      {/* --- Fallback if no items --- */}
+      {items.length === 0 && (
+        <div
+          className={cn("relative w-full", getAspectRatioClass(aspectRatio))}
+        >
+          <Image
+            src={"/no-image.jpg"}
+            alt="nothing"
+            aria-hidden="true"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+            style={{ objectFit: "cover" }}
+            // <--- UPDATED: Changed to bg-gray-500 placeholder
+            className="bg-gray-500 transition-transform duration-500 ease-in-out hover:scale-105"
+          />
+        </div>
+      )}
+
       {/* --- Main Carousel (Product Images) --- */}
       <Carousel
         setApi={setApi}
@@ -133,47 +145,41 @@ export function CarouselProduct({
         className="relative"
       >
         <CarouselContent className="-ml-1">
-          {items.map((item, index) => (
-            <CarouselItem key={index} className={cn("pl-1", basisClassName)}>
-              <div className="p-1">
-                <div className="relative overflow-hidden rounded-lg shadow-lg">
-                  <div
-                    className={cn(
-                      "relative w-full",
-                      getAspectRatioClass(aspectRatio),
-                    )}
-                  >
-                    <Image
-                      src={item.url}
-                      alt={index.toString()}
-                      aria-hidden="true"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                      style={{ objectFit: "cover" }}
-                      className="bg-gray-400 transition-transform duration-500 ease-in-out hover:scale-105"
-                      priority={index === 0}
-                    />
-                    ssssssssssssss
+          {items.length > 0 &&
+            items.map((item, index) => (
+              <CarouselItem key={index} className={cn("pl-1", basisClassName)}>
+                <div className="p-1">
+                  <div className="relative overflow-hidden rounded-lg shadow-lg">
+                    <div
+                      className={cn(
+                        "relative w-full",
+                        getAspectRatioClass(aspectRatio),
+                      )}
+                    >
+                      <Image
+                        src={item.url || "/no-image.jpg"}
+                        alt={index.toString()}
+                        aria-hidden="true"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                        style={{ objectFit: "cover" }}
+                        // <--- UPDATED: Changed to bg-gray-500 placeholder
+                        className="bg-gray-500 transition-transform duration-500 ease-in-out hover:scale-105"
+                        priority={index === 0}
+                      />
+                    </div>
                   </div>
-                  {/* <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 to-transparent p-4">
-                    <h3 className="text-lg font-semibold text-white">
-                      {item.name}
-                    </h3>
-                  </div> */}
                 </div>
-              </div>
-            </CarouselItem>
-          ))}
+              </CarouselItem>
+            ))}
         </CarouselContent>
-
-        {showArrows && (
+        {items.length > 0 && showArrows && (
           <>
             <CarouselPrevious className="left-2 border-none bg-black/30 text-gray-500 shadow-md" />
             <CarouselNext className="right-2 border-none bg-black/30 text-gray-500 shadow-md" />
           </>
         )}
-
-        {showDots && (
+        {items.length > 0 && showDots && (
           <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 space-x-2 rounded-full bg-black/30 p-1">
             {items.map((_, index) => (
               <button
@@ -193,8 +199,7 @@ export function CarouselProduct({
       </Carousel>
 
       {/* --- Thumbnail Navigation (Secondary Carousel with Scroll Arrows) --- */}
-
-      {showThumbnails && (
+      {items.length > 0 && showThumbnails && (
         <Carousel
           setApi={setThumbApi}
           className={cn("flex w-full justify-center", thumbnailClassName)}
@@ -216,19 +221,20 @@ export function CarouselProduct({
                   )}
                 >
                   <Image
-                    src={item.url || "/hero.png"}
+                    src={item.url || "/no-image.jpg"}
                     alt={index.toString()}
                     fill
                     sizes="(max-width: 768px) 20vw, 10vw"
                     style={{ objectFit: "cover" }}
+                    // <--- UPDATED: Added bg-gray-500 placeholder here too
+                    className="bg-gray-500"
                   />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-
           {/* Arrows for SCROLLING the thumbnails */}
-          {showThumbnailArrows && (
+          {items.length > 0 && showThumbnailArrows && (
             <>
               <CarouselPrevious className="top-1/2 -left-4 h-8 w-8 -translate-y-1/2 border-none bg-black/40 text-gray-500 shadow-md disabled:opacity-0" />
               <CarouselNext className="top-1/2 -right-4 h-8 w-8 -translate-y-1/2 border-none bg-black/40 text-gray-500 shadow-md disabled:opacity-0" />

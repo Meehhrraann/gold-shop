@@ -12,6 +12,7 @@ import { Toaster } from "sonner";
 
 import AuthProvider from "@/provider/AuthProvider";
 import { CartProvider } from "@/context/CartContext";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -60,6 +61,17 @@ export default async function RootLayout({
           enableSystem // Enables system theme detection
           disableTransitionOnChange // Optional: Disables flash on theme change
         >
+          <NextTopLoader
+            color="#e8ca89"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #e8ca89,0 0 5px #e8ca89"
+          />
           {/* <ThemeProvider defaultTheme="system" storageKey="app-theme"> */}
           <AuthProvider session={session}>
             <CartProvider>{children}</CartProvider>

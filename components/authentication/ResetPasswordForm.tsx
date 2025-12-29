@@ -21,6 +21,7 @@ import Link from "next/link";
 import Socials from "./Socials";
 import { useSearchParams } from "next/navigation";
 import { forgetPasswordSendEmail } from "@/lib/actions/auth/forgetPassword.action";
+import { KeyIcon } from "lucide-react";
 
 const ResetPasswordForm = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -55,8 +56,11 @@ const ResetPasswordForm = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-3 rounded-lg bg-slate-50 p-10 md:w-[350px]">
-      <p className="text-2xl font-semibold">🗝️Forget Password</p>
+    <div className="flex flex-col items-center justify-center gap-y-3 rounded-xl bg-slate-50/20 p-10 text-gray-300 md:w-[350px]">
+      <p className="flex gap-2 text-2xl font-semibold">
+        <KeyIcon className="size-7 font-bold text-amber-500" />
+        فراموشی رمز عبور
+      </p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -67,11 +71,11 @@ const ResetPasswordForm = () => {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="text-left">
-                <FormLabel className="font-semibold">Email :</FormLabel>
+              <FormItem dir="rtl" className="text-left">
+                <FormLabel className="font-semibold">ایمیل :</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black"
+                    className="border-none bg-white/70 text-black"
                     placeholder="example@email.com"
                     {...field}
                     type="email"
@@ -85,14 +89,20 @@ const ResetPasswordForm = () => {
 
           {/* display alert */}
           {successMessage && (
-            <div className="flex w-full items-center justify-start gap-2 rounded-lg bg-emerald-200 p-1 text-start text-sm text-emerald-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-2 rounded-lg bg-emerald-200 p-1 text-start text-sm text-emerald-600"
+            >
               <FaCheckCircle size={18} />
               <p>{successMessage}</p>
             </div>
           )}
 
           {errorMessage && (
-            <div className="flex w-full items-center justify-start gap-2 rounded-lg bg-red-200 p-1 text-start text-sm text-red-600">
+            <div
+              dir="rtl"
+              className="flex w-full items-center justify-start gap-2 rounded-lg bg-red-200 p-1 text-start text-sm text-red-600"
+            >
               <FaExclamationCircle size={18} />
               <p>{errorMessage!}</p>
             </div>
@@ -100,10 +110,10 @@ const ResetPasswordForm = () => {
 
           <Button
             disabled={!!isSubmitting}
-            className={"flex w-full bg-sky-600 text-white"}
+            className={"flex w-full cursor-pointer bg-sky-600 text-white"}
             type="submit"
           >
-            send email
+            ارسال ایمیل
           </Button>
         </form>
       </Form>

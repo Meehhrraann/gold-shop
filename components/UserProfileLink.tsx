@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import {
   Popover,
   PopoverContent,
@@ -14,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { LogOut, User, Settings, ShoppingBag, Loader2 } from "lucide-react";
 import { RiAdminLine } from "react-icons/ri";
 import LinkWithLoader from "./loading/LinkWithLoader";
+import Link from "next/link";
 
 export function UserProfileLink() {
   const { data: session } = useSession();
@@ -29,14 +31,14 @@ export function UserProfileLink() {
 
   if (!session) {
     return (
-      <LinkWithLoader href="/auth/login">
+      <Link href="/auth/login">
         <Button
           variant="outline"
-          className="cursor-pointer border-[#e8ca89] text-[#e8ca89] hover:bg-[#e8ca89] hover:text-black"
+          className="cursor-pointer border-[#e8ca89] px-2 text-sm text-[#e8ca89] hover:bg-[#e8ca89] hover:text-black"
         >
           ورود / ثبت‌نام
         </Button>
-      </LinkWithLoader>
+      </Link>
     );
   }
 
@@ -53,9 +55,7 @@ export function UserProfileLink() {
               alt={session.user?.name || "User"}
             />
             <AvatarFallback className="text-foreground bg-[#e8ca89] font-bold">
-              <p className="-translate-y-1">
-                {session.user?.name?.charAt(0) || "U"}
-              </p>
+              <p>{session.user?.name?.charAt(0) || "U"}</p>
             </AvatarFallback>
           </Avatar>
         </Button>

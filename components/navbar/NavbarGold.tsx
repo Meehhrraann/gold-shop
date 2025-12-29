@@ -44,8 +44,7 @@
 // import { useCurrentUser } from "@/hooks/use-current-user";
 // import { UserProfileLink } from "../UserProfileLink";
 // import GlobalSearch from "../search/GlobalSerach";
-// import LinkWithLoader from "../loading/LinkWithLoader";
-// const NavbarGold = () => {
+//  // const NavbarGold = () => {
 //   const currentUser = useCurrentUser();
 //   return (
 //     <div className="flex h-16 w-full items-center justify-between bg-[#1e1e1e] px-5 py-2 text-[#e8ca89] shadow-md">
@@ -181,8 +180,6 @@ import { CartDrawer } from "../cart/CartDrawer";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { UserProfileLink } from "../UserProfileLink";
 import GlobalSearch from "../search/GlobalSerach";
-import LoadingModal from "../loading/LoadingModal";
-import LinkWithLoader from "../loading/LinkWithLoader";
 
 const NavbarGold = () => {
   const currentUser = useCurrentUser();
@@ -208,20 +205,21 @@ const NavbarGold = () => {
     setIsSearchOpen(false); // <--- Add this
   };
 
+    
+
   return (
     <>
       {/* The Loading Modal sits at the top level */}
-      <LoadingModal isLoading={isLoading} />
 
       <div className="flex h-16 w-full items-center justify-between bg-[#1e1e1e] px-5 py-2 text-[#e8ca89] shadow-md">
-        <LinkWithLoader className="cursor-pointer" href="/">
+        <Link className="cursor-pointer" href="/">
           <div className="flex h-full items-center justify-center gap-1">
             <GiPlantsAndAnimals className="size-10" />
-            <p className="text flex h-fit translate-y-1 font-bold">
+            <p className="text flex h-fit translate-y-1 text-sm font-bold lg:text-base">
               Charmchi Jewels
             </p>
           </div>
-        </LinkWithLoader>
+        </Link>
 
         <div className="flex items-center gap-3 lg:hidden">
           {/* Mobile Search */}

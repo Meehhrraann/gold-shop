@@ -992,7 +992,7 @@ const CreateProductForm = ({ initialCategories }: CreateProductFormProps) => {
         </h2>
 
         {/* --- Section 1: Core Product Info --- */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* Name */}
           <FormField
             control={form.control}

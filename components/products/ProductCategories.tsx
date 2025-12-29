@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import LinkWithLoader from "../loading/LinkWithLoader";
 import { getAllCategories } from "@/lib/actions/category.action";
+import Link from "next/link";
 
 const ProductCategories = () => {
   const items = [
@@ -36,7 +36,7 @@ const ProductCategories = () => {
   return (
     <div className="grid grid-cols-1 justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
       {categories.map((item) => (
-        <LinkWithLoader
+        <Link
           href={`/products?category=${item._id}`}
           key={item._id}
           className="border-primary relative flex flex-col overflow-hidden rounded-lg border"
@@ -44,7 +44,7 @@ const ProductCategories = () => {
           {/* IMAGE */}
           <div className="relative aspect-4/3 w-full">
             <Image
-              src={item.image}
+              src={item.image || "/no-image.jpg"}
               alt={item.name}
               fill
               style={{ objectFit: "cover" }}
@@ -61,7 +61,7 @@ const ProductCategories = () => {
           {/* <div className="flex h-8 justify-end bg-black/70 px-4">
             <p className="text-primary text-right text-sm">{item.name}</p>
           </div> */}
-        </LinkWithLoader>
+        </Link>
       ))}
     </div>
   );

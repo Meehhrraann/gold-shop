@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { newVerification } from "@/lib/actions/auth/newVerification.action";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { BeatLoader, PuffLoader } from "react-spinners";
 
 const VerificationCard = () => {

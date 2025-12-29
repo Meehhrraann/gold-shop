@@ -15,12 +15,12 @@ export async function registerAction(params: z.infer<typeof RegisterSchema>) {
 
     const validatedFields = RegisterSchema.safeParse(values);
 
-    if (!validatedFields.success) return { error: "invalid fields!" };
+    if (!validatedFields.success) return { error: "اطلاعات نامعتبر است" };
 
     const { email, password, name } = validatedFields.data;
 
     const userExists = await User.findOne({ email });
-    if (userExists) return { error: "Email already exists!" };
+    if (userExists) return { error: "این ایمیل قبلا استفاده شده" };
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
@@ -33,7 +33,7 @@ export async function registerAction(params: z.infer<typeof RegisterSchema>) {
     const verificationLink = `${process.env.API_SERVER_BASE_URL}/auth/new-verification?token=${verificationToken?.token}`;
     await sendVerificationEmail(email, verificationLink);
 
-    return { success: "verification email sent !" };
+    return { success: "ثبت نام با موفقیت انجام شد" };
 
     // revalidatePath(path);
   } catch (error: any) {

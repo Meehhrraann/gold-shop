@@ -15,11 +15,11 @@ export async function forgetPasswordSendEmail(params) {
     const values = params;
 
     const validatedFields = ResetPasswordSchema.safeParse(values);
-    if (!validatedFields.success) return { error: "Invalid fields!" };
+    if (!validatedFields.success) return { error: "اطلاعات نامعتبر است" };
     const { email } = validatedFields.data;
 
     const user = await User.findOne({ email });
-    if (!user) return { error: "User not found!" };
+    if (!user) return { error: "کاربر یافت نشد" };
 
     const forgetPasswordToken = await generateEmailForgetPasswordToken({
       email: user.email,
@@ -27,10 +27,10 @@ export async function forgetPasswordSendEmail(params) {
     const verificationLink = `${process.env.API_SERVER_BASE_URL}/auth/new-password?token=${forgetPasswordToken?.token}`;
     await sendForgetPasswordEmail(user.email, verificationLink);
 
-    return { success: "verification email is sent" };
+    return { success: "ایمیل با موفقیت ارسال شد" };
   } catch (error) {
     console.log(error.type);
-    return { error: "Something went wrong!" };
+    return { error: "مشکلی رخ داد" };
   }
 }
 
@@ -40,17 +40,17 @@ export async function forgetPasswordChange(params) {
     const { values, token } = params;
 
     const validatedFields = NewPasswordSchema.safeParse(values);
-    if (!validatedFields.success) return { error: "Invalid fields!" };
+    if (!validatedFields.success) return { error: "اطلاعات نامعتبر است" };
     const { password } = validatedFields.data;
 
     const existingToken = await ForgetPasswordToken.findOne({ token });
-    if (!existingToken) return { error: "Token is not exist" };
+    if (!existingToken) return { error: "توکن یافت نشد" };
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    if (!decodedToken) return { error: "token is not valid" };
+    if (!decodedToken) return { error: "توکن نا معتبر است" };
 
     const user = await User.findOne({ email: decodedToken.email });
-    if (!user) return { error: "User not found!" };
+    if (!user) return { error: "کاربر یافت نشد" };
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -66,9 +66,9 @@ export async function forgetPasswordChange(params) {
 
     console.log(newUser);
 
-    return { success: "password successfully changed!" };
+    return { success: "رمز عبور با موفقیت تغییر یافت" };
   } catch (error) {
     console.log(error.type);
-    return { error: "Something went wrong!" };
+    return { error: "مشکلی رخ داد" };
   }
 }

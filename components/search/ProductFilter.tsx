@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { formUrlQuery } from "@/lib/utils";
 import { ProductFilters } from "@/contants";
 

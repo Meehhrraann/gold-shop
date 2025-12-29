@@ -93,7 +93,7 @@ const StatCard = ({ title, value, icon: Icon, unit = "" }: any) => (
       <div className="rounded-full bg-[#e8ca89]/10 p-3 text-[#e8ca89]">
         <Icon size={28} />
       </div>
-      <div className="text-right">
+      <div className="text-left">
         <p className="text-sm font-medium text-gray-400">{title}</p>
         <h3 className="mt-2 text-2xl font-bold text-[#e8ca89]">
           {value}{" "}

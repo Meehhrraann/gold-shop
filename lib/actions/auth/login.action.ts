@@ -21,20 +21,21 @@ export async function loginAction(params) {
     const { values, callbackUrl } = params;
 
     const validatedFields = LoginSchema.safeParse(values);
-    if (!validatedFields.success) return { error: "Invalid fields!" };
+    if (!validatedFields.success) return { error: "فیلدها نامعتبر است" };
     const { email, password, code } = validatedFields.data;
 
     const user = await User.findOne({ email });
-    if (!user) return { error: "User not found!" };
+    if (!user) return { error: "کاربر یافت نشد" };
 
     if (user && !user.password)
       return {
-        error: "please use forget password or use Github | Google for sign in",
+        error:
+          "از فراموشی رمز استفاده نمایید و یا با google یا github وارد شوید",
       };
 
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
-      return { error: "password not match" };
+      return { error: "رمز وارد شده صحیح نیست" };
     }
 
     //todo uncomment later
@@ -59,15 +60,15 @@ export async function loginAction(params) {
       // code verification
       const userExistedCode = await TwoFACode.findOne({ email, code });
       console.log(userExistedCode);
-      if (!userExistedCode) return { error: "invalid code" };
+      if (!userExistedCode) return { error: "کد نامعتبر است" };
 
       const codeMatched = code === userExistedCode?.code;
-      if (!codeMatched) return { error: "code not match" };
+      if (!codeMatched) return { error: "کد وارد شده صحیح نیست" };
 
       const codeExpired = userExistedCode.expires > Date.now();
       if (!codeExpired) {
         await TwoFACode.findOneAndDelete({ email });
-        return { error: "code expired" };
+        return { error: "کد منقضی شده است" };
       }
       await TwoFAConfirmation.findOneAndDelete({ email });
       await TwoFACode.findOneAndDelete({ email });
@@ -79,15 +80,15 @@ export async function loginAction(params) {
       redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
 
-    return { success: "successful login" };
+    return { success: "ورود با موفقیت انجام شد" };
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid credentials!" };
+          return { error: "اطلاعات وارد شده صحیح نیست" };
         default:
           console.log(error.type);
-          return { error: "Something went wrong!" };
+          return { error: "خطایی رخ داده است" };
       }
     }
     throw error;

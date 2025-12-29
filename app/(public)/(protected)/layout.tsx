@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { NavigationLoader } from "@/components/NavigationLoader"; // Or your loading component
+import { Loader2 } from "lucide-react";
 
 export default function ProtectedLayout({
   children,
@@ -25,7 +26,14 @@ export default function ProtectedLayout({
   // Optional: Show loading state if you want, but it's often better to just show the content
   // if the server has already rendered it.
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="text-primary flex min-h-screen justify-center p-8">
+        <div dir="rtl" className="flex gap-2 pt-36">
+          <Loader2 className="size-6 animate-spin" />
+          <p className="text-muted-foreground">لطفا منتظر بمانید...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
