@@ -54,7 +54,7 @@ export async function globalSearch(params: { query: string; type?: string }) {
           url:
             type === "product"
               ? `/products/${item._id}-${item.displaySlug || item._id}`
-              : `/category/${item.slug}`,
+              : `/products?category=${item.id}`,
         })),
       );
     }
