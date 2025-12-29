@@ -97,7 +97,7 @@ const ProductsGallary = ({ initialProducts, initialIsNext }: Props) => {
         <ProductFilter />
       </div>
 
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.length > 0 ? (
           products.map((item: any, i: number) => (
             <ProductCard key={`${item._id}-${i}`} product={item} />
