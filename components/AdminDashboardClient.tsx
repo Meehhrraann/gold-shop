@@ -52,12 +52,12 @@ const AdminDashboardClient = () => {
   const role = useCurrentRole();
 
   return (
-    <div className="bg-background min-h-screen px-6 py-12 dark:bg-slate-950">
+    <div className="bg-background min-h-screen px-6 py-12">
       <div className="mx-auto max-w-5xl">
         {/* Header Section */}
         <div className="mb-10 flex flex-col items-center justify-between gap-4 md:flex-row-reverse">
           <div className="text-right">
-            <h1 className="text-primary text-3xl font-bold drop-shadow-sm drop-shadow-amber-500 dark:text-slate-100">
+            <h1 className="text-primary text-3xl font-bold drop-shadow-sm drop-shadow-amber-500 ">
               پنل مدیریت
             </h1>
             <p dir="rtl" className="mt-2 text-white/50">

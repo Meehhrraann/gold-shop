@@ -52,7 +52,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vazir.variable} bg-[#252525] text-black antialiased dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vazir.variable} bg-[#252525] text-black antialiased`}
       >
         {/* <NavigationLoader /> TODO: add this */}
         <ThemeProvider
