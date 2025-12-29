@@ -50,9 +50,11 @@ export const CheckoutSummary = () => {
     });
   };
 
+  // if (cartItems.length === 0) return null;
+
   return (
     <div
-      className="bg-foreground text-primary border-primary/20 sticky top-20 h-fit rounded-lg border shadow-lg"
+      className="bg-foreground text-primary border-primary/20 sticky top-20 h-fit rounded-lg border shadow-lg lg:w-[350px]"
       dir="rtl"
     >
       <div className="p-6">

@@ -17,7 +17,11 @@ export const CartList = ({ isDrawer = false }: CartListProps) => {
   const { cartItems, cartTotal, itemCount, loading } = useCart();
 
   if (loading)
-    return <div className="p-10 text-center">در حال بارگذاری...</div>;
+    return (
+      <div dir="rtl" className="text-primary p-10 text-center">
+        در حال بارگذاری...
+      </div>
+    );
 
   if (cartItems?.length === 0) {
     return (

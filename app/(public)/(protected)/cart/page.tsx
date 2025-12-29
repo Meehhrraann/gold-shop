@@ -22,7 +22,7 @@ export default async function CartPage() {
         </div>
 
         {/* Sidebar Summary */}
-        <aside className="lg:w-[350px]">
+        <aside className="">
           <CheckoutSummary />
         </aside>
       </div>

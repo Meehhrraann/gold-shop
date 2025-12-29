@@ -16,6 +16,7 @@ import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 import { IProduct } from "@/models/product.model"; // Import your interface
+import Link from "next/link";
 
 interface BannerProps {
   products: IProduct[];
@@ -67,12 +68,18 @@ export const Banner = ({ products }: BannerProps) => {
                     <CardContent className="flex aspect-[3/4] flex-col items-center justify-center p-0">
                       {/* Image Container */}
                       <div className="relative h-[75%] w-full overflow-hidden">
-                        <Image
-                          src={product.media[0]?.url || "/no-image.jpg"}
-                          alt={product.name}
-                          fill // Use fill for better responsive control in relative containers
-                          className="object-cover transition-transform duration-500 hover:scale-105"
-                        />
+                        <Link
+                          href={`/products/${product._id}-${product.displaySlug}`}
+                          target="_blank" // This opens the new tab
+                          rel="noopener noreferrer" // Security best practice for target="_blank"
+                        >
+                          <Image
+                            src={product.media[0]?.url || "/no-image.jpg"}
+                            alt={product.name}
+                            fill // Use fill for better responsive control in relative containers
+                            className="object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                        </Link>
                       </div>
 
                       {/* Details Container */}
