@@ -100,7 +100,11 @@ const ProductsGallary = ({ initialProducts, initialIsNext }: Props) => {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.length > 0 ? (
           products.map((item: any, i: number) => (
-            <ProductCard key={`${item._id}-${i}`} product={item} />
+            <ProductCard
+              setProducts={setProducts}
+              key={`${item._id}-${i}`}
+              product={item}
+            />
           ))
         ) : (
           <div className="col-span-full py-10 text-center">
