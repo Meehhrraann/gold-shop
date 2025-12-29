@@ -121,12 +121,20 @@ const Product = ({ product }) => {
     Mixed: "ترکیبی",
   };
 
+  // return (
+  //   <div className="flex flex-col justify-center gap-10 lg:flex-row-reverse lg:items-center">
+  //     <div className="max-w-16 bg-red-500 p-16">left</div>
+  //     <div className="bg-blue-500 p-36">right</div>
+  //   </div>
+  // );
+
   // render
   return (
-    <div className="flex flex-col gap-20 px-10 text-gray-300">
-      <div className="container mx-auto mt-20 flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:items-start">
+    <div className="flex flex-col items-center gap-20 px-10 text-gray-300">
+      {/* <div className="container mx-auto mt-20 flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:items-start"> */}
+      <div className="flex flex-col justify-center gap-10 p-20 lg:flex-row lg:items-start">
         {/* left */}
-        <div className="flex h-fit w-full justify-center">
+        <div className="flex h-fit w-full min-w-sm justify-center">
           <CarouselProduct
             items={product?.media} // if we need 3 => {items.slice(0, 3)}
             aspectRatio="1:1" // =>  4:3 1:1 3:4
@@ -144,9 +152,9 @@ const Product = ({ product }) => {
           />
         </div>
         {/* right */}
-        <div className="bg-foreground flex-y-1 flex h-fit w-full max-w-xl flex-col items-end gap-10 rounded-xl p-10">
+        <div className="bg-foreground flex-y-1 flex h-fit w-full max-w-lg flex-col gap-10 rounded-xl p-10">
           {/* title + rating */}
-          <div className="flex w-full flex-col justify-center gap-5">
+          <div className="flex w-full flex-col justify-center gap-5 bg-red-500">
             <div className="flex flex-row-reverse justify-between gap-5">
               <h1 dir="rtl" className="text-primary truncate text-2xl">
                 {product?.name}
