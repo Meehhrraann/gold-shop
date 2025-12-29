@@ -95,7 +95,7 @@ const OrderCard = ({ order }) => {
           onClick={() => toast.success("درخاست پیگیری با موفقیت ارسال شد")}
           className="text-foreground flex items-center gap-1 rounded-xl bg-[#e8ca89] p-3 shadow-lg transition-all hover:bg-[#d4b570] active:scale-95"
         >
-          <p>درخاست پیگیری</p>
+          <p>پیگیری</p>
           <Headset className="size-5" />
         </button>
       </div>
