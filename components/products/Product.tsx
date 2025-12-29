@@ -123,7 +123,7 @@ const Product = ({ product }) => {
 
   // render
   return (
-    <div className="flex flex-col gap-20 px-5 text-gray-300">
+    <div className="flex flex-col gap-20 px-10 text-gray-300">
       <div className="container mx-auto mt-20 flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:items-start">
         {/* left */}
         <div className="flex h-fit w-full justify-center">
@@ -144,7 +144,7 @@ const Product = ({ product }) => {
           />
         </div>
         {/* right */}
-        <div className="bg-foreground flex-y-1 flex h-fit w-full flex-col items-end gap-10 rounded-xl p-10">
+        <div className="bg-foreground flex-y-1 flex h-fit w-full max-w-xl flex-col items-end gap-10 rounded-xl p-10">
           {/* title + rating */}
           <div className="flex w-full flex-col justify-center gap-5">
             <div className="flex flex-row-reverse justify-between gap-5">
