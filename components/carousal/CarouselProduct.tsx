@@ -128,7 +128,7 @@ export function CarouselProduct({
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
             style={{ objectFit: "cover" }}
             // <--- UPDATED: Changed to bg-gray-500 placeholder
-            className="bg-gray-500 transition-transform duration-500 ease-in-out hover:scale-105"
+            className="rounded-lg bg-gray-500 transition-transform duration-500 ease-in-out hover:scale-105"
           />
         </div>
       )}

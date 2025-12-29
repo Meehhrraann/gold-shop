@@ -144,7 +144,7 @@ const Product = ({ product }) => {
           />
         </div>
         {/* right */}
-        <div className="bg-foreground flex h-fit w-full flex-1 flex-col items-end gap-10 rounded-xl p-10">
+        <div className="bg-foreground flex-y-1 flex h-fit w-full flex-col items-end gap-10 rounded-xl p-10">
           {/* title + rating */}
           <div className="flex w-full flex-col justify-center gap-5">
             <div className="flex flex-row-reverse justify-between gap-5">
