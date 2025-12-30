@@ -22,31 +22,36 @@ export default async function Home() {
       {/* section 1 */}
 
       <div
-        className="relative h-36 w-full bg-[url('/hero.png')] bg-cover bg-center px-3 shadow-2xl"
+        className="relative h-36 w-full bg-[url('/hero5.png')] bg-cover bg-center px-3 shadow-2xl"
         style={{
           height: "calc(100vh - 4rem)",
         }}
       >
-        <div className="bg-trasparent bottom-[10%] left-16 mt-50 flex items-center justify-center text-right text-[#e8ca89] lg:absolute">
-          <div className="rounded-xl bg-white/20 p-10 shadow-lg backdrop-blur-md">
-            <p className="text-5xl drop-shadow-2xl">طلا و جواهر چرمچی</p>
+        <div className="bg-trasparent bottom-[50%] left-20 mt-50 flex items-center justify-center text-right text-[#e8ca89] lg:absolute">
+          {/* <div className="rounded-xl bg-white/20 p-10 shadow-lg backdrop-blur-md"> */}
 
-            <p className="mt-2 text-2xl text-gray-300">
+          <div className="border-primary shadow-primary flex max-w-lg flex-col gap-2 overflow-hidden rounded-lg border bg-black/70 px-10 py-12 shadow-lg">
+            <div className="flex h-full items-center justify-center gap-1 pb-5">
+              <GiPlantsAndAnimals className="size-10 lg:size-12" />
+              <p className="text flex h-fit translate-y-1 text-sm font-bold lg:text-lg">
+                Charmchi Jewels
+              </p>
+            </div>
+
+            <p className="text-4xl drop-shadow-2xl">طلا و جواهر چرمچی</p>
+
+            <p className="text-md text-gray-300">
               زیبایی که نسل‌ها ماندگار است
             </p>
-            <p className="text-xl text-gray-300">هنر در دستان شما</p>
-            <Link className="cursor-pointer" href={"/products"}>
-              <div className="mt-2 flex-1 rounded-lg bg-[#e8ca89] p-2 text-center text-gray-800">
-                نمایش محصولات
-              </div>
+            {/* <p className="text-xl text-gray-300">هنر در دستان شما</p> */}
+            <Link
+              className="border-primary mt-5 w-full cursor-pointer rounded-lg border-2 px-3 py-2 text-center"
+              href={"/products"}
+            >
+              نمایش محصولات
             </Link>
           </div>
         </div>
-
-        {/* <div className="absolute bottom-[25%] left-14 flex flex-col text-right text-[#e8ca89]">
-          
-          
-        </div> */}
       </div>
 
       {/* section 2 */}
