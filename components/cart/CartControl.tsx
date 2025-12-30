@@ -31,13 +31,13 @@ const CartControl = ({ product, compact = false }: CartControlProps) => {
 
   return (
     <div
-      className={`flex items-center justify-center gap-3 rounded-lg bg-gray-100 ${compact ? "p-1" : "p-2 px-4"}`}
+      className={`flex items-center justify-center rounded-lg bg-gray-100 ${compact ? "p-1" : "gap-3 p-2 px-4"}`}
     >
       {/* Increase Button */}
       <button
         // CHANGE HERE: Pass full product
         onClick={() => addItem(product)}
-        className="rounded-full bg-white p-2 text-green-600 transition-all hover:shadow-md"
+        className="rounded-full bg-white p-1 text-green-600 transition-all hover:shadow-md"
       >
         <FaPlus size={12} />
       </button>
@@ -53,12 +53,12 @@ const CartControl = ({ product, compact = false }: CartControlProps) => {
           onClick={() => removeItem(product._id)}
           className="rounded-full bg-white p-2 text-red-500 transition-all hover:shadow-md"
         >
-          <FaTrash size={12} />
+          <FaTrash size={9} />
         </button>
       ) : (
         <button
           onClick={() => decreaseItem(product._id)}
-          className="rounded-full bg-white p-2 text-gray-600 transition-all hover:shadow-md"
+          className="rounded-full bg-white p-1 text-gray-600 transition-all hover:shadow-md"
         >
           <FaMinus size={12} />
         </button>

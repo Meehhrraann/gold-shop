@@ -69,7 +69,7 @@ export const CartList = ({ isDrawer = false }: CartListProps) => {
                 قیمت {formatNumberWithCommas(item.product.price)} هزارتومان
               </p>
             </div>
-            <CartControl product={item.product} />
+            <CartControl compact={isDrawer} product={item.product} />
           </div>
         </div>
       ))}
