@@ -33,7 +33,7 @@ const Page = async (props: Props) => {
         <p className="text-white/50">باما بدرخشید</p>
       </div>
 
-      <div className="mt-10 w-full px-5 lg:px-10">
+      <div className="mt-10 w-full px-2 lg:px-10">
         <ProductsGallary
           initialProducts={initialProducts}
           initialIsNext={initialIsNext}
