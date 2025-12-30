@@ -237,7 +237,7 @@ const ProductCard = ({ product, setProducts }) => {
         </div>
 
         {/* Text & Price Section */}
-        <div dir="rtl" className="flex flex-col gap-2 px-3 py-2 text-white">
+        <div dir="rtl" className="flex flex-col gap-1 px-3 py-2 text-white">
           <p className="truncate text-sm md:text-lg">{product.name}</p>
           <div className="flex items-center text-[8px] tracking-widest text-white/40 md:text-[10px]">
             <p>طلای {product.goldDetails.karat} عیار</p>
@@ -245,7 +245,7 @@ const ProductCard = ({ product, setProducts }) => {
             <p> {product.goldDetails.weightGrams} گرم</p>
           </div>
           <div
-            className={`flex w-full items-center justify-end gap-1 text-left text-xs text-white/40 ${
+            className={`flex w-full items-center justify-end gap-1 text-left text-[10px] text-white/40 ${
               product.discount > 0 ? "" : "invisible"
             }`}
           >
