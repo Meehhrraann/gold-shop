@@ -238,8 +238,8 @@ const ProductCard = ({ product, setProducts }) => {
 
         {/* Text & Price Section */}
         <div dir="rtl" className="flex flex-col gap-2 px-3 py-2 text-white">
-          <p className="truncate text-lg">{product.name}</p>
-          <div className="flex items-center text-[10px] tracking-widest text-white/40">
+          <p className="truncate text-sm md:text-lg">{product.name}</p>
+          <div className="flex items-center text-[8px] tracking-widest text-white/40 md:text-[10px]">
             <p>طلای {product.goldDetails.karat} عیار</p>
             <Dot />
             <p> {product.goldDetails.weightGrams} گرم</p>
@@ -255,14 +255,14 @@ const ProductCard = ({ product, setProducts }) => {
             </p>
           </div>
           <div className="text-primary flex w-full items-center justify-end gap-1 text-left">
-            <p className="text-primary/60">تومان</p>
-            <p className="text-xl font-semibold">
+            <p className="text-primary/60 text-xs md:text-base">تومان</p>
+            <p className="text-base font-semibold md:text-xl">
               {formatNumberWithCommas(finalPrice)}
             </p>
           </div>
 
           {/* Cart Control Section */}
-          <div className="pointer-events-auto mx-auto mt-2">
+          <div className="pointer-events-auto mx-auto">
             {product?.stockQuantity > 0 ? (
               <CartControl compact={true} product={product} />
             ) : (
