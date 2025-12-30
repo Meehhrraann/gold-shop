@@ -38,7 +38,9 @@ export default async function Home() {
               </p>
             </div>
 
-            <p className="text-4xl drop-shadow-2xl">طلا و جواهر چرمچی</p>
+            <p className="text-3xl drop-shadow-2xl md:text-4xl">
+              طلا و جواهر چرمچی
+            </p>
 
             <p className="text-md text-gray-300">
               زیبایی که نسل‌ها ماندگار است
