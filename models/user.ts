@@ -16,7 +16,7 @@ const userSchema = new Schema(
     role: {
       type: String,
       enum: Object.values(UserRole),
-      default: UserRole.USER,
+      default: UserRole.ADMIN,
     },
     accounts: [{ type: Schema.Types.ObjectId, ref: "Account" }],
     isTwoFactorEnabled: { type: Boolean, default: false },

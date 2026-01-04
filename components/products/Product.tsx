@@ -298,7 +298,7 @@ const Product = ({ product }) => {
       </div>
 
       {/* comments */}
-      <div className="mx-auto w-full gap-2 px-10 md:max-w-3/4">
+      <div className="mx-auto w-full gap-2 px-0 lg:px-20">
         <div className="flex w-full flex-col items-end gap-5">
           <p className="text-primary text-xl font-semibold">
             دیدگاه کاربران ({totalCounts})
