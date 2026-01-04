@@ -2,23 +2,20 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import React from "react";
 import { NewPasswordSchema } from "@/validation";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginAction } from "@/lib/actions/auth/login.action";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
-import Link from "next/link";
-import Socials from "./Socials";
+
 import { useSearchParams } from "next/navigation";
 import {
   forgetPasswordChange,

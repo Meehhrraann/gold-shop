@@ -7,11 +7,9 @@ const Page = ({ children }) => {
   return (
     <div className="mx-auto flex w-full justify-center">
       {/* This is the new overlay div */}
-      {/* <div className="flex min-h-screen w-full items-center justify-center bg-black/50 backdrop-blur-sm"> */}
       <CardWrapper goToLogin>
         <LoginForm />
       </CardWrapper>
-      {/* </div> */}
     </div>
   );
 };

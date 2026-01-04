@@ -1,12 +1,7 @@
-import Image from "next/image";
-
 import { GiPlantsAndAnimals } from "react-icons/gi";
 
-import { TbCopyright } from "react-icons/tb";
 import { FaFacebook, FaInstagram, FaTelegram, FaTwitter } from "react-icons/fa";
-import NavbarGold from "@/components/navbar/NavbarGold";
 import { Banner } from "@/components/carousal/Carousel";
-import LinkWithLoader from "@/components/loading/LinkWithLoader";
 import { getProducts } from "@/lib/actions/product.action";
 import Link from "next/link";
 
@@ -14,8 +9,6 @@ export default async function Home() {
   const { products } = await getProducts({
     filter: "newest",
     page: 1,
-
-    // category: "some-category-id"
   });
   return (
     <div className="flex min-h-screen flex-col items-center text-center text-[#e8ca89]">
@@ -28,7 +21,6 @@ export default async function Home() {
         }}
       >
         <div className="bg-trasparent bottom-[50%] left-20 mt-50 flex items-center justify-center text-right text-[#e8ca89] lg:absolute">
-          {/* <div className="rounded-xl bg-white/20 p-10 shadow-lg backdrop-blur-md"> */}
 
           <div className="border-primary shadow-primary flex max-w-lg flex-col gap-2 overflow-hidden rounded-lg border bg-black/70 px-10 py-12 shadow-lg">
             <div className="flex h-full items-center justify-center gap-1 pb-5">
@@ -45,7 +37,6 @@ export default async function Home() {
             <p className="text-md text-gray-300">
               زیبایی که نسل‌ها ماندگار است
             </p>
-            {/* <p className="text-xl text-gray-300">هنر در دستان شما</p> */}
             <Link
               className="border-primary mt-5 w-full cursor-pointer rounded-lg border-2 px-3 py-2 text-center"
               href={"/products"}

@@ -90,20 +90,6 @@ export const MediaSchema = z.object({
     .optional(),
 });
 
-export const MessageSchema = z.object({
-  content: z.string().optional(),
-  senderName: z.string(),
-  sender: z.string().min(1, { message: "شناسه فرستنده الزامی است" }),
-  chat: z.string().min(1, { message: "شناسه گفتگو الزامی است" }),
-  readBy: z.array(z.string()).optional(),
-  media: z.array(MediaSchema).optional(),
-  replyTo: z.string().optional(),
-  type: z.enum(["text", "media", "system", "reply"]).default("text"),
-  isEdited: z.boolean().default(false),
-  editedAt: z.coerce.date().optional(),
-  likes: z.array(z.string()).optional(), // ✅ new field
-});
-
 // --- Gold Product Schemas (New/Extended) ---
 
 export const GoldDetailsSchema = z.object({

@@ -3,13 +3,10 @@
 import React from "react";
 import Product from "@/components/products/Product";
 import { getProductById } from "@/lib/actions/product.action";
-import { redirect } from "next/navigation";
-// import { persianSlugify } from "@/lib/utils"; // ❌ NO LONGER NEEDED HERE
+import { notFound, redirect } from "next/navigation"; // Import notFound
 
-// ... Interface and setup ...
-
-const Page = async ({ params }: ProductPageProps) => {
-  const { id } = await params; // ← FIX
+const Page = async ({ params }) => {
+  const { id } = await params;
 
   const decodedIdSlug = decodeURIComponent(id);
   const parts = decodedIdSlug.split("-");
@@ -17,17 +14,17 @@ const Page = async ({ params }: ProductPageProps) => {
 
   const result = await getProductById({ productId });
 
+  // ✅ FIX 1: Use notFound() for missing products
   if (result.error || !result.product) {
-    return redirect("/404");
+    notFound();
   }
 
   const product = result.product;
+  const canonicalIdSlug = `${product._id.toString()}-${product.displaySlug}`;
 
-  const correctDisplaySlug = product.displaySlug;
-  const canonicalIdSlug = `${product._id.toString()}-${correctDisplaySlug}`;
-
+  // ✅ FIX 2: Ensure redirect is NOT inside a try/catch block
   if (decodedIdSlug !== canonicalIdSlug) {
-    return redirect(`/products/${canonicalIdSlug}`, "permanent");
+    redirect(`/products/${canonicalIdSlug}`);
   }
 
   return (

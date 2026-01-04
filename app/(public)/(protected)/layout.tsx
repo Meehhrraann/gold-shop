@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { signOut, useSession } from "next-auth/react";
-import { NavigationLoader } from "@/components/NavigationLoader"; // Or your loading component
 import { Loader2 } from "lucide-react";
 
 export default function ProtectedLayout({

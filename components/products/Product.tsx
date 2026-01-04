@@ -10,13 +10,9 @@ import {
   FaRegCommentDots,
   FaRegEdit,
   FaRegHeart,
-  FaRegMinusSquare,
-  FaRegPlusSquare,
   FaSpinner,
 } from "react-icons/fa";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
-import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
-import { BsCart4 } from "react-icons/bs";
 import Comment from "./Comment";
 import { formatNumberWithCommas } from "@/lib/utils";
 import { useCurrentUser } from "@/hooks/use-current-user";
@@ -25,7 +21,6 @@ import {
   handleProductLike,
   handleProductSave,
 } from "@/lib/actions/product.action";
-import { Button } from "../ui/button";
 import { toast } from "sonner";
 import AddComment from "./AddComment";
 import { useCurrentRole } from "@/hooks/use-current-role";
@@ -121,13 +116,6 @@ const Product = ({ product }) => {
     Mixed: "ترکیبی",
   };
 
-  // return (
-  //   <div className="flex flex-col justify-center gap-10 lg:flex-row-reverse lg:items-center">
-  //     <div className="max-w-16 bg-red-500 p-16">left</div>
-  //     <div className="bg-blue-500 p-36">right</div>
-  //   </div>
-  // );
-
   // render
   return (
     <div className="flex flex-col items-center gap-20 px-10 text-gray-300">
@@ -147,8 +135,6 @@ const Product = ({ product }) => {
             showArrows={true}
             showThumbnails={true}
             className="max-w-sm md:max-w-md lg:max-w-2xl" // *optional*
-            // autoplayDelay = 3000, // *optional* delay => Carousel at first act like align=start even if align=center
-            // thumbnailClassName="" // *optional*
           />
         </div>
         {/* right */}
