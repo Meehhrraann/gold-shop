@@ -1,4 +1,4 @@
-Gold Shop – Full‑Stack E‑Commerce Platform
+# Gold Shop – Full‑Stack E‑Commerce Platform
 
 A modern, full‑stack e‑commerce application built with Next.js, React, Tailwind CSS, and Shadcn UI, featuring secure authentication, real‑time data handling, product management, and advanced search & filtering.  
 The project is fully deployed and accessible at:
@@ -130,7 +130,6 @@ npm install
 Environment Variables
 Create a .env file:
 
-
 - MONGODB_URI=
 - NEXTAUTH_SECRET=
 - API_SERVER_BASE_URL=
@@ -147,7 +146,6 @@ Create a .env file:
 - EMAIL_USER=
 - EMAIL_PASSWORD=
 - EMAIL_APP_PASSWORD=
-  
 
 Run Development Server
 `bash
