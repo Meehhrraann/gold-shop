@@ -10,24 +10,27 @@ The project is fully deployed and accessible at:
 🚀 Tech Stack
 
 Frontend
-- Next.js – App Router, Server Actions, API Routes  
-- React.js – Component‑based UI  
-- Tailwind CSS – Utility‑first styling  
-- Shadcn UI – Accessible, customizable UI components  
+
+- Next.js – App Router, Server Actions, API Routes
+- React.js – Component‑based UI
+- Tailwind CSS – Utility‑first styling
+- Shadcn UI – Accessible, customizable UI components
 
 Backend & Infrastructure
-- MongoDB Atlas – Cloud database  
-- Liara Object Storage (S3 compatible) – Image storage  
-- Auth.js – Authentication (Session + JWT hybrid)  
-- Middleware – Login callback handling  
+
+- MongoDB Atlas – Cloud database
+- Liara Object Storage (S3 compatible) – Image storage
+- Auth.js – Authentication (Session + JWT hybrid)
+- Middleware – Login callback handling
 
 ---
 
 🔐 Authentication Features
+
 - Credential Login (Email + Password)
-- OAuth Login:  
-  - GitHub  
-  - Google  
+- OAuth Login:
+  - GitHub
+  - Google
 - Email Verification
 - Password Reset Email
 - Hybrid Auth: Session + JWT for secure and scalable auth flows
@@ -35,36 +38,41 @@ Backend & Infrastructure
 ---
 
 🛒 Shopping Cart Logic
-- Cart stored in LocalStorage for guests  
-- On login, cart is automatically synced and transferred to the database  
-- Persistent cart across sessions  
+
+- Cart stored in LocalStorage for guests
+- On login, cart is automatically synced and transferred to the database
+- Persistent cart across sessions
 
 ---
 
 🧩 Core Features
 
 Product Management
-- Create product  
-- Update product  
-- Upload product images to Liara Object Storage (S3)  
-- Real‑time UI updates  
+
+- Create product
+- Update product
+- Upload product images to Liara Object Storage (S3)
+- Real‑time UI updates
 
 User Interaction
-- Like system  
-- Comment system  
-- Kanban board for admin/product workflow  
+
+- Like system
+- Comment system
+- Kanban board for admin/product workflow
 
 Search & Filtering
-- Global Search – Search across the entire platform  
-- Local Search – Context‑specific search (e.g., inside product lists)  
-- Advanced Filtering – Category, price, attributes, etc.  
+
+- Global Search – Search across the entire platform
+- Local Search – Context‑specific search (e.g., inside product lists)
+- Advanced Filtering – Category, price, attributes, etc.
 
 ---
 
 📊 Analytics & Data Visualization
-- Dynamic charts powered by real database data  
-- Aggregation pipelines to transform MongoDB data into meaningful insights  
-- Custom data manipulation using MongoDB Aggregation Framework  
+
+- Dynamic charts powered by real database data
+- Aggregation pipelines to transform MongoDB data into meaningful insights
+- Custom data manipulation using MongoDB Aggregation Framework
 
 ---
 
@@ -72,57 +80,42 @@ Search & Filtering
 
 MongoDB Atlas
 Used for:
-- Users  
-- Products  
-- Comments  
-- Likes  
-- Cart  
-- Admin/Kanban data  
+
+- Users
+- Products
+- Comments
+- Likes
+- Cart
+- Admin/Kanban data
 
 Liara Object Storage (S3 Compatible)
 Used for:
-- Product images  
-- Secure upload via signed URLs  
-- Fast CDN delivery  
+
+- Product images
+- Secure upload via signed URLs
+- Fast CDN delivery
 
 ---
 
 ⚙️ Middleware
 Custom middleware handles:
-- Auth callback after login  
-- Session validation  
-- Route protection  
-- Redirect logic  
 
----
-
-📁 Project Structure (Simplified)
-
-`
-/
-├── app/
-│   ├── api/
-│   ├── auth/
-│   ├── dashboard/
-│   ├── products/
-│   └── ...
-├── components/
-├── lib/
-├── hooks/
-├── styles/
-└── utils/
-`
+- Auth callback after login
+- Session validation
+- Route protection
+- Redirect logic
 
 ---
 
 🧪 Key Highlights
-- Fully responsive UI  
-- Clean and scalable architecture  
-- Modern UI with Shadcn components  
-- Secure authentication flow  
-- Real‑time interactions  
-- Optimized database queries  
-- Production‑ready deployment  
+
+- Fully responsive UI
+- Clean and scalable architecture
+- Modern UI with Shadcn components
+- Secure authentication flow
+- Real‑time interactions
+- Optimized database queries
+- Production‑ready deployment
 
 ---
 
@@ -137,7 +130,7 @@ npm install
 Environment Variables
 Create a .env file:
 
-`
+`bash
 MONGODB_URI=
 NEXTAUTH_SECRET=
 API_SERVER_BASE_URL=
@@ -164,7 +157,8 @@ npm run dev
 ---
 
 📌 Future Improvements
-- Order management  
-- Payment gateway integration  
-- Admin analytics dashboard  
-- Wishlist system  
+
+- Order management
+- Payment gateway integration
+- Admin analytics dashboard
+- Wishlist system
