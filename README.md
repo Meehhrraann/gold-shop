@@ -130,7 +130,6 @@ npm install
 Environment Variables
 Create a .env file:
 
-`
 
 - MONGODB_URI=
 - NEXTAUTH_SECRET=
@@ -148,7 +147,7 @@ Create a .env file:
 - EMAIL_USER=
 - EMAIL_PASSWORD=
 - EMAIL_APP_PASSWORD=
-  `
+  
 
 Run Development Server
 `bash
