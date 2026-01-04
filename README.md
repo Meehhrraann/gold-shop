@@ -7,7 +7,7 @@ The project is fully deployed and accessible at:
 
 ---
 
-🚀 Tech Stack
+# 🚀 Tech Stack
 
 Frontend
 
@@ -25,7 +25,7 @@ Backend & Infrastructure
 
 ---
 
-🔐 Authentication Features
+# 🔐 Authentication Features
 
 - Credential Login (Email + Password)
 - OAuth Login:
@@ -37,7 +37,7 @@ Backend & Infrastructure
 
 ---
 
-🛒 Shopping Cart Logic
+# 🛒 Shopping Cart Logic
 
 - Cart stored in LocalStorage for guests
 - On login, cart is automatically synced and transferred to the database
@@ -45,7 +45,7 @@ Backend & Infrastructure
 
 ---
 
-🧩 Core Features
+# 🧩 Core Features
 
 Product Management
 
@@ -68,7 +68,7 @@ Search & Filtering
 
 ---
 
-📊 Analytics & Data Visualization
+# 📊 Analytics & Data Visualization
 
 - Dynamic charts powered by real database data
 - Aggregation pipelines to transform MongoDB data into meaningful insights
@@ -76,7 +76,7 @@ Search & Filtering
 
 ---
 
-🗄️ Database & Storage
+# 🗄️ Database & Storage
 
 MongoDB Atlas
 Used for:
@@ -97,7 +97,8 @@ Used for:
 
 ---
 
-⚙️ Middleware
+# ⚙️ Middleware
+
 Custom middleware handles:
 
 - Auth callback after login
@@ -107,7 +108,7 @@ Custom middleware handles:
 
 ---
 
-🧪 Key Highlights
+# 🧪 Key Highlights
 
 - Fully responsive UI
 - Clean and scalable architecture
@@ -119,7 +120,7 @@ Custom middleware handles:
 
 ---
 
-🛠️ Installation & Setup
+# 🛠️ Installation & Setup
 
 `bash
 git clone <repo-url>
@@ -154,7 +155,7 @@ npm run dev
 
 ---
 
-📌 Future Improvements
+# 📌 Future Improvements
 
 - Order management
 - Payment gateway integration
