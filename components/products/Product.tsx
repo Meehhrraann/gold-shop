@@ -132,9 +132,9 @@ const Product = ({ product }) => {
   return (
     <div className="flex flex-col items-center gap-20 px-10 text-gray-300">
       {/* <div className="container mx-auto mt-20 flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:items-start"> */}
-      <div className="flex flex-col justify-center gap-10 p-20 lg:flex-row lg:items-start">
+      <div className="flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:p-20">
         {/* left */}
-        <div className="flex h-fit w-full min-w-sm justify-center">
+        <div className="flex h-fit w-full justify-center">
           <CarouselProduct
             items={product?.media} // if we need 3 => {items.slice(0, 3)}
             aspectRatio="1:1" // =>  4:3 1:1 3:4
@@ -183,9 +183,7 @@ const Product = ({ product }) => {
                   />
                 )}
                 {currentRole === "ADMIN" && (
-                  <Link
-                    href={`http://localhost:3000/admin/updateProduct/${product?._id}`}
-                  >
+                  <Link href={`/admin/updateProduct/${product?._id}`}>
                     <FaRegEdit className="text-primary size-6 cursor-pointer" />
                   </Link>
                 )}
