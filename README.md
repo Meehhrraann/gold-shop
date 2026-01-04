@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Gold Shop – Full‑Stack E‑Commerce Platform
 
-## Getting Started
+A modern, full‑stack e‑commerce application built with Next.js, React, Tailwind CSS, and Shadcn UI, featuring secure authentication, real‑time data handling, product management, and advanced search & filtering.
 
-First, run the development server:
+🔗 Live Demo: https://gold-shop-phi.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Next.js – App Router, Server Actions, API Routes
+React.js – Component‑based UI
+Tailwind CSS – Utility‑first styling
+Shadcn UI – Accessible, customizable UI components
+Backend & Infrastructure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+MongoDB Atlas – Cloud database
+Liara Object Storage (S3 compatible) – Image storage
+Auth.js – Authentication (Session + JWT hybrid)
+Middleware – Login callback handling
+🔐 Authentication Features
 
-## Learn More
+Credential Login (Email + Password)
+OAuth Login:
+GitHub
+Google
+Email Verification
+Password Reset Email
+Hybrid Auth: Session + JWT for secure and scalable auth flows
+🛒 Shopping Cart Logic
 
-To learn more about Next.js, take a look at the following resources:
+Cart stored in LocalStorage for guests
+On login, cart is automatically synced and transferred to the database
+Persistent cart across sessions
+🧩 Core Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Product Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create product
+Update product
+Upload product images to Liara Object Storage (S3)
+Real‑time UI updates
+User Interaction
 
-## Deploy on Vercel
+Like system
+Comment system
+Kanban board for admin/product workflow
+Search & Filtering
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Global Search – Search across the entire platform
+Local Search – Context‑specific search (e.g., inside product lists)
+Advanced Filtering – Category, price, attributes, etc.
+📊 Analytics & Data Visualization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dynamic charts powered by real database data
+Aggregation pipelines to transform MongoDB data into meaningful insights
+Custom data manipulation using MongoDB Aggregation Framework
+🗄️ Database & Storage
+
+MongoDB Atlas Used for:
+
+Users
+Products
+Comments
+Likes
+Cart
+Admin/Kanban data
+Liara Object Storage (S3 Compatible) Used for:
+
+Product images
+Secure upload via signed URLs
+Fast CDN delivery
+⚙️ Middleware Custom middleware handles:
+
+Auth callback after login
+Session validation
+Route protection
+Redirect logic
+📁 Project Structure (Simplified)
+
+/ ├── app/ │ ├── api/ │ ├── auth/ │ ├── dashboard/ │ ├── products/ │ └── ... ├── components/ ├── lib/ ├── hooks/ ├── styles/ └── utils/
+
+🛠️ Installation & Setup
+
+bash git clone <repo-url> cd gold-shop npm install
+
+Environment Variables
+
+Create a .env file:
+
+MONGODB_URI=
+NEXTAUTH_SECRET=
+API_SERVER_BASE_URL=
+
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOGGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+JWT_SECRET=
+
+EMAIL_HOST=
+EMAIL_PORT=
+EMAIL_USER=
+EMAIL_PASSWORD=
+EMAIL_APP_PASSWORD=
+
+# liara cloud-object
+
+LIARA_ENDPOINT="https://storage.c2.liara.space"
+LIARA_BUCKET_NAME=
+LIARA_ACCESS_KEY=
+LIARA_SECRET_KEY=
+
+Run Development Server
+
+bash npm run dev
+
+📌 Future Improvements
+
+Order management
+Payment gateway integration
+Admin analytics dashboard
+Wishlist system
+If you want, I can also add:
+
+✅ Badges (Vercel, Next.js, MongoDB, etc.)
+✅ Screenshots section
+✅ Architecture diagram
+✅ API documentation
+✅ Feature GIFs
