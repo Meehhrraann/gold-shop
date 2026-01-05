@@ -49,7 +49,7 @@ export const Banner = ({ products }: BannerProps) => {
   return (
     <div className="flex justify-center py-8">
       <div className="relative w-full max-w-5xl">
-        <p className="mb-4 text-right font-bold">محصولات ویژه</p>
+        <p className="mb-4 px-5 text-right font-bold">محصولات ویژه</p>
 
         <Carousel
           setApi={setCarouselApi}
