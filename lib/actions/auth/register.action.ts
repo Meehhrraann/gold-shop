@@ -27,6 +27,7 @@ export async function registerAction(params: z.infer<typeof RegisterSchema>) {
       email: email,
       password: hashedPassword,
       name: name,
+      admin: "ADMIN",
     });
 
     const verificationToken = await generateEmailVerificationToken({ email });
