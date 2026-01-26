@@ -5,6 +5,10 @@ A comprehensive e-commerce solution featuring a modern tech stack, secure authen
 ## 📺 Demo
 
 
+Uploading gold7.mp4…
+
+
+
 ## 🚀 Features
 - **Authentication:** Secure login via Google, GitHub, and Credentials using Auth.js.
 - **Admin Dashboard:** Includes a Kanban board for order management and S3-integrated image uploads.
