@@ -3,11 +3,7 @@
 A comprehensive e-commerce solution featuring a modern tech stack, secure authentication, and a robust admin dashboard.
 
 ## 📺 Demo
-https://github.com/user-attachments/assets/fd9fdc75-82f5-40fc-8968-2511606e04c6
-<video controls src="https://github.com/user-attachments/assets/fd9fdc75-82f5-40fc-8968-2511606e04c6"></video>
-
-
-
+🎬 [Watch demo video](https://chat-ticket.storage.c2.liara.space/gold7.mp4)
 
 
 ## 🚀 Features
