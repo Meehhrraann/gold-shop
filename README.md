@@ -2,6 +2,9 @@
 
 A comprehensive e-commerce solution featuring a modern tech stack, secure authentication, and a robust admin dashboard.
 
+<img width="1598" height="1140" alt="image" src="https://github.com/user-attachments/assets/e749e35a-1dc1-4e3d-8575-d1abf5505e48" />
+
+
 ## 📺 Demo
 🎬 [Watch demo video](https://chat-ticket.storage.c2.liara.space/gold7.mp4)
 
