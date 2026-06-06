@@ -6,7 +6,7 @@ A comprehensive e-commerce solution featuring a modern tech stack, secure authen
 
 
 ## 📺 Demo
-🎬 [Watch demo video](https://chat-ticket.storage.c2.liara.space/gold7.mp4)
+🎬 [Watch demo video](https://aparat.com/v/wdnepf7)
 
 
 ## 🚀 Features
